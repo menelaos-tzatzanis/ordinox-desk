@@ -45,3 +45,23 @@ This repository is currently intended as a **project showcase** containing docum
 ## Status
 
 Active personal software project.
+
+## Application Preview
+
+### Calendar & Appointments
+![Ordinox Desk Calendar](assets/screenshots/calendar.png)
+
+### Client Management
+![Ordinox Desk Clients](assets/screenshots/clients.png)
+
+### Client Details
+![Ordinox Desk Client Details](assets/screenshots/client-details.png)
+
+### Revenue Management
+![Ordinox Desk Revenue](assets/screenshots/revenue.png)
+
+### Reminders
+![Ordinox Desk Reminders](assets/screenshots/reminders.png)
+
+### Backup & Import
+![Ordinox Desk Backup and Import](assets/screenshots/backup-import.png)
