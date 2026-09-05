@@ -1,24 +1,28 @@
 # Ordinox Desk
 
-**Desktop client and business management application for Windows.**
+**Local-first desktop client and business management application for Windows.**
 
-Ordinox Desk is a desktop application designed to help small businesses manage clients, appointments, services, revenue, reminders and everyday business workflows from a single interface.
+Ordinox Desk is a Windows desktop application designed to help small businesses manage clients, appointments, services, revenue, reminders and everyday business workflows from a single interface.
 
-The project started as an initial concept and was developed iteratively into a functional Windows desktop application, with a strong focus on usability, structured data management, reliability and practical day-to-day operation.
+The project started as an initial idea and was developed iteratively into a functional desktop application, with a strong focus on usability, structured data management, reliability and practical day-to-day operation.
 
 ---
 
 ## Tech Stack
 
-- **Tauri v2** — Windows desktop application framework
-- **Rust** — native Tauri application layer and packaging
-- **HTML**
-- **CSS**
-- **JavaScript**
-- **Local browser/WebView storage** for application data
-- **Windows installer packaging**
+- **Tauri 2** — Rust-based desktop application framework and Windows packaging
+- **Vanilla JavaScript** — application logic and state management
+- **HTML5** — application structure
+- **CSS3** — custom user interface and desktop layout
+- **WebView localStorage** — local application data persistence
+- **JSON** — backup and data import/export
+- **Windows desktop packaging** — standalone application and installer generation
 
-The application combines a web-based user interface with Tauri's native desktop environment, allowing it to run as a standalone Windows application rather than only inside a browser.
+Ordinox Desk is a **local-first application**.
+
+Its main business logic is implemented in JavaScript, while Tauri provides the native Windows application shell and packaging layer.
+
+The application does not require a remote backend or database server for its normal operation.
 
 ---
 
@@ -28,7 +32,7 @@ The application combines a web-based user interface with Tauri's native desktop 
 
 ![Ordinox Desk Calendar](assets/screenshots/calendar.png)
 
-The application includes an appointment management system with:
+The application includes a complete appointment management workflow with:
 
 - New appointment creation
 - Date and time management
@@ -39,7 +43,7 @@ The application includes an appointment management system with:
 - Appointment search
 - Upcoming appointments
 - Calendar-based navigation
-- Appointment completion tracking
+- Appointment status management
 
 ---
 
@@ -53,11 +57,11 @@ Features include:
 
 - New client creation
 - Client editing
-- Search and filtering
+- Client search
 - Organized client list
-- Client history
-- Related appointments and services
-- Quick access to client actions and records
+- Client-related information
+- Access to previous activity
+- Quick access to relevant actions and records
 
 ---
 
@@ -77,7 +81,7 @@ The goal is to keep useful client information accessible from one place instead 
 
 The application includes tools for organizing and reviewing revenue-related information.
 
-This allows the user to obtain a practical overview of financial data associated with appointments, services and business activity.
+This provides a practical overview of financial information associated with appointments, services and business activity.
 
 ---
 
@@ -87,7 +91,7 @@ This allows the user to obtain a practical overview of financial data associated
 
 A dedicated reminder system helps users keep track of important tasks and obligations directly inside the application.
 
-This keeps business-related reminders together with the rest of the client's workflow instead of requiring a separate application.
+This allows business-related reminders to remain connected to the rest of the workflow instead of requiring a separate application.
 
 ---
 
@@ -95,7 +99,7 @@ This keeps business-related reminders together with the rest of the client's wor
 
 Ordinox Desk includes service management functionality, allowing commonly provided services to be organized and reused throughout the application.
 
-This helps maintain consistent data while reducing repetitive manual entry.
+This reduces repetitive data entry and helps maintain consistency across appointments and client activity.
 
 ---
 
@@ -103,22 +107,24 @@ This helps maintain consistent data while reducing repetitive manual entry.
 
 ![Ordinox Desk Backup and Import](assets/screenshots/backup-import.png)
 
-Data protection and portability were important parts of the project.
+Data portability and recovery were important parts of the project.
 
 The application includes functionality for:
 
 - Data backup
-- Data export
+- JSON data export
 - Data import
+- Validation and normalization of imported data
 - Recovery of stored information
+- Protection against invalid or unexpected imported data
 
-The purpose is to ensure that business data is not dependent on a single application installation.
+The application stores its working data locally, allowing normal operation without requiring a remote server.
 
 ---
 
 ## Windows Desktop Application
 
-Ordinox Desk is packaged as a standalone Windows desktop application using **Tauri**.
+Ordinox Desk runs as a standalone Windows desktop application using **Tauri 2**.
 
 The project includes configuration for:
 
@@ -129,7 +135,25 @@ The project includes configuration for:
 - Windows packaging
 - Installer generation
 
-This allows the application to be installed and used like a normal Windows program rather than requiring the user to manually open source files or run a development environment.
+The user interface and business logic are built with Vanilla HTML, CSS and JavaScript, while Tauri provides the native desktop runtime and packaging environment.
+
+This allows Ordinox Desk to be installed and used like a normal Windows application rather than requiring the user to manually open web files or run a development environment.
+
+---
+
+## Local-First Architecture
+
+Ordinox Desk was designed to work locally on the user's computer.
+
+For normal operation:
+
+- No remote backend is required
+- No external database server is required
+- Application data is stored locally
+- Backup files can be exported by the user
+- Existing data can be restored through the application's import workflow
+
+This architecture keeps the application simple to deploy and suitable for standalone business use.
 
 ---
 
@@ -139,17 +163,16 @@ Ordinox Desk was developed incrementally rather than through large one-time rewr
 
 The development process includes:
 
-- Feature planning
-- Implementation
-- Behavior verification
-- Debugging
-- Problem identification
-- UI/UX refinement
-- Regression checking after changes
-- Data safety considerations
-- Windows packaging and installer testing
+1. Understanding the existing behavior
+2. Planning the required feature or fix
+3. Implementing the smallest appropriate change
+4. Reviewing the affected code
+5. Running and testing the application
+6. Checking existing functionality for regressions
+7. Refining the user interface where necessary
+8. Avoiding unrelated modifications
 
-Features and fixes are implemented in controlled steps so that existing functionality can be checked after each change.
+This approach became particularly important as the project grew and more features began interacting with the same application state and data.
 
 ---
 
@@ -157,23 +180,41 @@ Features and fixes are implemented in controlled steps so that existing function
 
 AI-assisted software development is an important part of my workflow, particularly using **OpenAI Codex**.
 
-AI tools are used for:
+AI tools are used for tasks such as:
 
-- Code analysis
+- Existing code analysis
 - Feature implementation
 - Debugging
 - Identifying potential issues
-- Refactoring and code refinement
+- Code refinement
 - Investigating alternative implementations
 - Reviewing the possible impact of changes
 - Assisting with testing and validation
-- Analyzing existing application architecture
+- Understanding interactions between existing features
 
 AI-generated changes are not applied blindly.
 
-Changes are reviewed and tested incrementally, with particular attention to preserving existing functionality and avoiding unrelated modifications.
+Changes are reviewed and tested incrementally, with particular attention to preserving existing behavior and avoiding unrelated modifications.
 
-This workflow combines AI-assisted implementation with human review, testing and product decisions.
+My workflow combines AI-assisted implementation with human review, testing, debugging and product decisions.
+
+---
+
+## Data Handling & Reliability
+
+As the application evolved, particular attention was given to handling local business data safely and predictably.
+
+The project includes logic for areas such as:
+
+- Input validation
+- Data normalization
+- Backup and import workflows
+- Recovery from malformed stored data
+- Escaping user-controlled values before rendering in multiple UI areas
+- Safer CSV-compatible data handling
+- Rollback behavior when certain persistence operations fail
+
+These mechanisms were added progressively as real application workflows became more complex.
 
 ---
 
@@ -182,38 +223,40 @@ This workflow combines AI-assisted implementation with human review, testing and
 Developing Ordinox Desk has given me practical experience in:
 
 - Building a complete desktop application from an initial idea
-- Desktop application architecture
+- Designing application workflows
 - Client and business data management
-- Application state and local data persistence
+- Application state management
+- Local data persistence
+- HTML, CSS and Vanilla JavaScript application development
 - UI/UX design and refinement
-- Feature implementation
 - Debugging and troubleshooting
-- Regression testing
-- Data backup and recovery workflows
-- Windows application configuration
-- Tauri and Rust-based desktop packaging
-- Windows installer preparation
+- Feature implementation
+- Regression checking
+- Data validation
+- Backup and recovery workflows
+- Tauri desktop application configuration
+- Windows application packaging
+- Installer preparation
 - Iterative product development
 - AI-assisted software development
 - Using Codex as part of a real development workflow
 
 ---
 
-## Development Philosophy
+## Project Structure
 
-One of the main goals of the project is to improve functionality without introducing unnecessary regressions.
+The application uses a web-based frontend running inside the Tauri desktop environment.
 
-For significant changes, I follow a workflow based on:
+The main application is organized around:
 
-1. Understanding the existing behavior
-2. Identifying the smallest appropriate change
-3. Implementing the change
-4. Reviewing the affected files
-5. Building or testing the application
-6. Verifying that existing functionality still behaves correctly
-7. Avoiding unrelated changes
+- HTML for application structure
+- CSS for the custom desktop interface
+- JavaScript for business logic, state and user interactions
+- Tauri configuration for the native application environment
+- Rust/Tauri bootstrap code for the desktop shell
+- Local storage and JSON-based backup workflows for data persistence and portability
 
-This approach has become particularly important when working with AI-assisted coding tools.
+The majority of the application's business logic is implemented in JavaScript.
 
 ---
 
@@ -229,11 +272,13 @@ No production client data is included in this portfolio repository.
 
 ## Source Code
 
-The production source code of Ordinox Desk is currently maintained privately.
+The full production source code of Ordinox Desk is currently maintained privately.
 
 This repository is intended as a **project showcase and portfolio presentation**, containing documentation and visual material demonstrating the application's functionality and development process.
 
-Selected source code or additional technical material may be provided when appropriate.
+The complete source code is not included in this showcase repository.
+
+Additional technical material or source access may be provided when appropriate.
 
 ---
 
@@ -241,4 +286,4 @@ Selected source code or additional technical material may be provided when appro
 
 **Active personal software project.**
 
-Ordinox Desk is a functional Windows desktop application and continues to evolve through additional features, bug fixes and usability improvements.
+Ordinox Desk is a functional Windows desktop application and continues to evolve through additional features, fixes, code improvements and usability refinements.
