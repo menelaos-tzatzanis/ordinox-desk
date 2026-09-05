@@ -2,15 +2,29 @@
 
 **Desktop client and business management application for Windows.**
 
-Ordinox Desk is a desktop application designed to help small businesses organize clients, appointments, services, revenue and everyday business workflows in one practical environment.
+Ordinox Desk is a desktop application designed to help small businesses manage clients, appointments, services, revenue, reminders and everyday business workflows from a single interface.
 
-The project started as an initial concept and was developed iteratively into a working Windows application, with a strong focus on usability, structured data management and reliable day-to-day operation.
+The project started as an initial concept and was developed iteratively into a functional Windows desktop application, with a strong focus on usability, structured data management, reliability and practical day-to-day operation.
+
+---
+
+## Tech Stack
+
+- **Tauri v2** — Windows desktop application framework
+- **Rust** — native Tauri application layer and packaging
+- **HTML**
+- **CSS**
+- **JavaScript**
+- **Local browser/WebView storage** for application data
+- **Windows installer packaging**
+
+The application combines a web-based user interface with Tauri's native desktop environment, allowing it to run as a standalone Windows application rather than only inside a browser.
 
 ---
 
 ## Application Preview
 
-### Calendar & Appointments
+### Calendar & Appointment Management
 
 ![Ordinox Desk Calendar](assets/screenshots/calendar.png)
 
@@ -19,12 +33,13 @@ The application includes an appointment management system with:
 - New appointment creation
 - Date and time management
 - Client information
-- Service type
-- Price
+- Service selection
+- Price tracking
 - Notes
 - Appointment search
 - Upcoming appointments
 - Calendar-based navigation
+- Appointment completion tracking
 
 ---
 
@@ -32,14 +47,17 @@ The application includes an appointment management system with:
 
 ![Ordinox Desk Clients](assets/screenshots/clients.png)
 
-Ordinox Desk includes a structured client management system with:
+Ordinox Desk includes a structured client management system designed for quick access to customer information and related business activity.
+
+Features include:
 
 - New client creation
 - Client editing
 - Search and filtering
 - Organized client list
-- Client-related information
-- Quick access to relevant actions and records
+- Client history
+- Related appointments and services
+- Quick access to client actions and records
 
 ---
 
@@ -47,9 +65,9 @@ Ordinox Desk includes a structured client management system with:
 
 ![Ordinox Desk Client Details](assets/screenshots/client-details.png)
 
-Each client has a dedicated profile containing related information and business activity.
+Each client can have a dedicated record containing relevant information and business history.
 
-The goal is to keep the most useful client information accessible from one place without relying on multiple applications or separate files.
+The goal is to keep useful client information accessible from one place instead of relying on multiple applications, documents or spreadsheets.
 
 ---
 
@@ -59,7 +77,7 @@ The goal is to keep the most useful client information accessible from one place
 
 The application includes tools for organizing and reviewing revenue-related information.
 
-This provides a practical overview of financial data connected to services and business activity.
+This allows the user to obtain a practical overview of financial data associated with appointments, services and business activity.
 
 ---
 
@@ -68,6 +86,16 @@ This provides a practical overview of financial data connected to services and b
 ![Ordinox Desk Reminders](assets/screenshots/reminders.png)
 
 A dedicated reminder system helps users keep track of important tasks and obligations directly inside the application.
+
+This keeps business-related reminders together with the rest of the client's workflow instead of requiring a separate application.
+
+---
+
+### Services
+
+Ordinox Desk includes service management functionality, allowing commonly provided services to be organized and reused throughout the application.
+
+This helps maintain consistent data while reducing repetitive manual entry.
 
 ---
 
@@ -84,7 +112,24 @@ The application includes functionality for:
 - Data import
 - Recovery of stored information
 
-This helps ensure that business data is not dependent on a single installation of the application.
+The purpose is to ensure that business data is not dependent on a single application installation.
+
+---
+
+## Windows Desktop Application
+
+Ordinox Desk is packaged as a standalone Windows desktop application using **Tauri**.
+
+The project includes configuration for:
+
+- Native Windows application execution
+- Application identity and branding
+- Application icons
+- Release builds
+- Windows packaging
+- Installer generation
+
+This allows the application to be installed and used like a normal Windows program rather than requiring the user to manually open source files or run a development environment.
 
 ---
 
@@ -92,76 +137,108 @@ This helps ensure that business data is not dependent on a single installation o
 
 Ordinox Desk was developed incrementally rather than through large one-time rewrites.
 
-The development workflow includes:
+The development process includes:
 
 - Feature planning
 - Implementation
 - Behavior verification
 - Debugging
 - Problem identification
-- UI refinement
+- UI/UX refinement
 - Regression checking after changes
-- Windows application packaging
+- Data safety considerations
+- Windows packaging and installer testing
 
-This incremental approach helps reduce unintended changes and makes it easier to validate each feature before moving to the next stage.
+Features and fixes are implemented in controlled steps so that existing functionality can be checked after each change.
 
 ---
 
 ## AI-Assisted Development
 
-AI-assisted software development tools are used extensively throughout the development process, particularly **OpenAI Codex**.
+AI-assisted software development is an important part of my workflow, particularly using **OpenAI Codex**.
 
 AI tools are used for:
 
+- Code analysis
 - Feature implementation
-- Existing code analysis
 - Debugging
 - Identifying potential issues
-- Code refinement
+- Refactoring and code refinement
+- Investigating alternative implementations
 - Reviewing the possible impact of changes
-- Exploring alternative implementations
+- Assisting with testing and validation
+- Analyzing existing application architecture
 
-Changes are not applied blindly. Each change is reviewed, tested and validated incrementally, with attention to avoiding unrelated modifications and preserving existing behavior.
+AI-generated changes are not applied blindly.
+
+Changes are reviewed and tested incrementally, with particular attention to preserving existing functionality and avoiding unrelated modifications.
+
+This workflow combines AI-assisted implementation with human review, testing and product decisions.
 
 ---
 
-## Project Experience
+## What I Learned From This Project
 
-Through Ordinox Desk, I have gained practical experience in:
+Developing Ordinox Desk has given me practical experience in:
 
-- Desktop application development
-- Turning an initial idea into a working software product
+- Building a complete desktop application from an initial idea
+- Desktop application architecture
 - Client and business data management
-- UI/UX refinement
-- Debugging and troubleshooting
+- Application state and local data persistence
+- UI/UX design and refinement
 - Feature implementation
-- Testing and validation
-- Backup and restore workflows
-- Windows application packaging
-- Installer preparation
+- Debugging and troubleshooting
+- Regression testing
+- Data backup and recovery workflows
+- Windows application configuration
+- Tauri and Rust-based desktop packaging
+- Windows installer preparation
+- Iterative product development
 - AI-assisted software development
-- Using Codex as part of a practical development workflow
+- Using Codex as part of a real development workflow
 
 ---
 
-## Test Data
+## Development Philosophy
 
-All names, phone numbers and other information shown in the screenshots in this repository are **fictional test data** and do not represent real clients or individuals.
+One of the main goals of the project is to improve functionality without introducing unnecessary regressions.
+
+For significant changes, I follow a workflow based on:
+
+1. Understanding the existing behavior
+2. Identifying the smallest appropriate change
+3. Implementing the change
+4. Reviewing the affected files
+5. Building or testing the application
+6. Verifying that existing functionality still behaves correctly
+7. Avoiding unrelated changes
+
+This approach has become particularly important when working with AI-assisted coding tools.
+
+---
+
+## Test Data & Privacy
+
+All names, telephone numbers, appointments and other personal information visible in the screenshots in this repository are **fictional test data**.
+
+They do not represent real clients or individuals.
+
+No production client data is included in this portfolio repository.
 
 ---
 
 ## Source Code
 
-The production source code of Ordinox Desk is maintained privately.
+The production source code of Ordinox Desk is currently maintained privately.
 
-This repository is intended as a **project showcase and portfolio presentation**, containing documentation and visual material that demonstrates the application, its functionality and the development process.
+This repository is intended as a **project showcase and portfolio presentation**, containing documentation and visual material demonstrating the application's functionality and development process.
 
-The production source code is not included in this showcase repository.
+Selected source code or additional technical material may be provided when appropriate.
 
 ---
 
-## Status
+## Project Status
 
 **Active personal software project.**
 
-Ordinox Desk is a functional Windows application and continues to evolve through new features, fixes and usability improvements.
+Ordinox Desk is a functional Windows desktop application and continues to evolve through additional features, bug fixes and usability improvements.
