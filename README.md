@@ -1,5 +1,7 @@
 # Ordinox Desk
 
+[English](README.md) · [Ελληνικά](README_GR.md)
+
 **Local-first desktop client and business management application for Windows.**
 
 Ordinox Desk is a Windows desktop application designed to help small businesses manage clients, appointments, services, revenue, reminders and everyday business workflows from a single interface.
